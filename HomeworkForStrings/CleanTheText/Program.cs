@@ -36,7 +36,7 @@ namespace CleanTheText
             FindLongestWord(myNewString);
 
         }
-        // (buna) You will get a text from where you will need to clean the text because it contains 
+        // You will get a text from where you will need to clean the text because it contains 
         //a lot of strange characters that don’t belong there( ^ <, > &+ @%$)
         //Output:Hi there I’m telling you, you need to do your homeworks. Hate me now and thank me later.
         static void DirtyString(string strangeString, string removeStrangeChars)
@@ -55,7 +55,7 @@ namespace CleanTheText
             }
             Console.WriteLine(result);
         }
-        // Write a method to add 'ing' at the end of a given string (length should be at least 3). 
+        // !!!REFACUTA!!!! Write a method to add 'ing' at the end of a given string (length should be at least 3). 
         //If the given string already ends with 'ing' then add 'ly' instead.If the string length of the 
         //given string is less than 3, leave it unchanged.
 
@@ -63,33 +63,25 @@ namespace CleanTheText
         //Output:'abcing' 
         //Input : 'string'
         //Output: 'stringly'
-        static void IngString(string givenString)
+        static void IngString(string myString)
         {
-            string givenString1 = "ing";
-            string givenString2 = givenString;
-            int j = 0;
-            if (givenString.Length >= 3)
+            if (myString.Length >= 3)
             {
-                for (int i = givenString.Length - 1; i > givenString.Length - 3; i--)
+                if (myString.Trim().EndsWith("ing"))
                 {
-                    if (givenString[i] == givenString1[givenString1.Length - 1 - j])
-                    {
-                        givenString2 = givenString.Insert(givenString.Length, "ly");
-                        Console.WriteLine($"New string is {givenString2}");
-                        j++;
-                    }
-                    else
-                    {
-                        if (givenString[i] != givenString1[givenString1.Length - 1 - j])
-                            givenString2 = givenString.Insert(givenString.Length, "ing");
-                        Console.WriteLine($"New string is {givenString2}");
-                        j++;
-                    }
+                    myString += "ly";
+                    Console.WriteLine($"The new string with 'ly' is:{myString}");
+                }
+                else
+                {
+                    myString += "ing";
+                    Console.WriteLine($"The new string with 'ing' is:{myString}");
                 }
             }
             else
             {
-                Console.WriteLine($"Unchaged string is {givenString}");
+                Console.WriteLine($"The unchaged string is:{myString}");
+
             }
         }
         //You have some text that contains your email address. And you want to hide that. You 

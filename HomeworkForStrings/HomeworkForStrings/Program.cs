@@ -18,7 +18,7 @@ namespace HomeworkForStrings
             string problema2 = Console.ReadLine();
             Console.WriteLine(RemoveOdd(problema2));
 
-            Console.WriteLine("Please enter text for up and lower cases:");
+            Console.WriteLine("Please enter text for lower and upper cases:");
             string textToConvert = Console.ReadLine();
             Console.WriteLine(TextlowerUpper(textToConvert));
 
@@ -49,12 +49,7 @@ namespace HomeworkForStrings
             string textToRev = Console.ReadLine();
             Console.WriteLine($"After reverse, the string is:{ReverseAgain(textToRev)}");
 
-            Console.WriteLine("Please enter the string for strip a set of characters:");
-            string stringForRemove = Console.ReadLine();
-            Console.WriteLine("Please enter the remove chars from string: ");
-            string removeCharsFromString = Console.ReadLine();
-            Console.WriteLine($"After strip a set of characters, the new string is:");
-            StrippedString(stringForRemove, removeCharsFromString);
+            Stripped();
 
             Console.WriteLine("Please enter the text for transform lowercase the first n characters: ");
             string myNString = Console.ReadLine();
@@ -93,11 +88,10 @@ namespace HomeworkForStrings
             }
             return text2.ToString();
         }
-        //•	Write a method that takes input from the user and displays that input back in lower cases.
+        //•	Write a method that takes input from the user and displays that input back in upper and lower cases.
         static string TextlowerUpper(string textTochange)
         {
-            string texTnou = "";
-            return texTnou = "Lowercase=" + textTochange.ToLower() + "\nUpperCase =" + textTochange.ToUpper();
+            return $"Lower text:{textTochange.ToLower()}\nUpper text:{textTochange.ToUpper()}";
         }
         //•	Write a method that reverses a string if it's length is a multiple of 4
         static string Reverse(string stringReverse)
@@ -137,6 +131,7 @@ namespace HomeworkForStrings
             {
                 Console.WriteLine($"The strint with all uppercase  if it contains at least 2 uppercase is: {text = text.ToUpper()}");
             }
+            Console.WriteLine();
         }
         //•	Write a method that to remove a newline.
         static void TheOldStringIs()
@@ -145,13 +140,9 @@ namespace HomeworkForStrings
         }
         static void RemoveNewLine(string myString)
         {
-            StringBuilder sb = new StringBuilder();
-
-            foreach (char c in myString)
-            {
-                sb.Append(c);
-            }
-            Console.WriteLine(sb.ToString());
+            string s = "this is\nmy homework\nfor today because I\rdidn't have time to do it";
+            string replaced = s.Replace("\n", " ").Replace("\r", " ");
+            Console.WriteLine(replaced);
         }
         //•	Write a method to display formatted text (width=50) as output. For example: If I 
         // have a text that's 134 characters long, the formatted string should have maximum 
@@ -187,33 +178,15 @@ namespace HomeworkForStrings
             return newStringRev.ToString();
         }
         //•	Write a method that strips a set of characters from a string
-        static void StrippedString(string testString, string removeChars)
+        static void Stripped()
         {
-            char[] myArray = removeChars.ToCharArray();
-            CultureInfo[] cultureOf = { CultureInfo.CreateSpecificCulture("en-US") };
-            string result = testString;
-            foreach (char c in myArray)
-            {
-                foreach (var cult in cultureOf)
-                {
-                    for (int i = 0; i < result.Length; i++)
-                    {
-                        if (char.ToUpper(c, cult) == char.ToUpper(result[i], cult))
-                        {
-                            result = result.Remove(i, 1);
-                        }
-                        else
-                        {
-                            if (char.ToLower(c, cult) == char.ToLower(result[i], cult))
-                            {
-                                result = result.Remove(i, 1);
-                            }
-                        }
-                    }
-                }
-
-                Console.WriteLine(result);
-            }
+            Console.WriteLine("Enter the string:");
+            string s1 = Console.ReadLine();
+            Console.WriteLine("Enter the set of characters from string:");
+            string removeString = Console.ReadLine();
+            string replaced = "";
+            replaced = s1.Replace(removeString, "");
+            Console.WriteLine($"After strip a set of characters, the new string is:{replaced}");
         }
         //•	Write a method that transforms to lowercase first n characters in a string
         static void TransformLowercase(string myString, int lengthOfSubstring)
@@ -252,7 +225,7 @@ namespace HomeworkForStrings
             {
                 if (char.IsDigit(myString[i]))
                 {
-                    int m = int.Parse(Convert.ToString(myString[i])) % 10;
+                    int m = int.Parse(Convert.ToString(myString[i]));
                     sum = sum + m;
                 }
             }
